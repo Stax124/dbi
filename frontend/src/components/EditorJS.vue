@@ -6,8 +6,10 @@
 import EditorJS, { type OutputData } from '@editorjs/editorjs'
 import Header from '@editorjs/header'
 import List from '@editorjs/list'
+import Paragraph from '@editorjs/paragraph'
 import ImageLink from '@editorjs/simple-image'
 import Table from '@editorjs/table'
+import AlignmentTuneTool from 'editorjs-text-alignment-blocktune'
 import { type PropType } from 'vue'
 
 const props = defineProps({
@@ -36,14 +38,30 @@ const editor = new EditorJS({
    * Pass Tool's class or Settings object for each Tool you want to use
    */
   tools: {
-    header: Header,
     list: List,
     imageLink: ImageLink,
-    table: Table
+    table: Table,
+    header: {
+      class: Header,
+      tunes: ['anyTuneName']
+    },
+    paragraph: {
+      class: Paragraph,
+      tunes: ['anyTuneName']
+    },
+    anyTuneName: {
+      class: AlignmentTuneTool,
+      config: {
+        blocks: {
+          header: 'center'
+        }
+      }
+    }
   },
   onChange: () => {
     editor.save().then(props.onSave)
   },
+
   data: props.data,
   readOnly: !props.editable
 })

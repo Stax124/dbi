@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { serverUrl } from '@/shared'
-import { useCookies } from '@vueuse/integrations'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { NButton, NCard, NInput } from 'naive-ui'
 import { ref } from 'vue'
 
@@ -46,7 +46,10 @@ function login() {
   loading.value = true
   fetch(url)
     .then((data) => {
-      data.json().then((obj) => console.log(obj))
+      data.json().then((token) => {
+        if (token.length) cookies.set('token', token)
+        window.location.href = '/'
+      })
       loading.value = false
     })
     .catch((err) => {

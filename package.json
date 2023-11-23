@@ -10,9 +10,9 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "api:dev": "python3 main.py",
-    "frontend:dev": "cd frontend && bun run dev",
-    "frontend:build": "cd frontend && bun run build"
+    "api:dev": "poetry run python main.py",
+    "frontend:dev": "cd frontend && yarn dev",
+    "frontend:build": "cd frontend && yarn build"
   },
   "dependencies": {}
 }

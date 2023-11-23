@@ -15,6 +15,16 @@ declare module '@editorjs/table' {
   export = Table
 }
 
+declare module '@editorjs/paragraph' {
+  import Paragraph from '@editorjs/paragraph'
+  export = Paragraph
+}
+
+declare module 'editorjs-text-alignment-blocktune' {
+  import AlignmentTuneTool from 'editorjs-text-alignment-blocktune'
+  export = AlignmentTuneTool
+}
+
 declare module '@editorjs/simple-image' {
   import ImageLink from '@editorjs/simple-image'
   export = ImageLink
