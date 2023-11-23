@@ -1,0 +1,53 @@
+body {
+  background-color: #262626;
+  font-size: large;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: 850px;
+}
+.cdx-block {
+  max-width: 850px;
+}
+
+.inlineToolButton,
+.ce-toolbar__plus,
+.ce-toolbar__settings-btn,
+.ce-popover__search {
+  background-color: #2b2b2b;
+  color: white;
+}
+.ce-header,
+.cdx-block {
+  color: white;
+}
+.ce-block--selected {
+  .cdx-block {
+    background-color: #2f2f2f;
+    border: 1px solid #5b5b5b;
+  }
+}
+
+.ce-toolbar__plus:hover,
+.ce-toolbar__settings-btn:hover,
+.cdx-loader,
+.cdx-button {
+  color: white;
+  background-color: #262626;
+}
+
+.cdx-button:hover {
+  background-color: #2f2f2f;
+}
+
+.ce-popover,
+.ce-popover-item,
+.ce-popover-item__icon,
+.ce-popover-items,
+.ce-popover-item:hover {
+  --color-background-item-hover: #2f2f2f;
+  background-color: #262626;
+  color: white;
+  border: none;
+}

@@ -21,12 +21,3 @@ async def master_endpoint(websocket: WebSocket):
 
     except WebSocketDisconnect:
         websocket_manager.disconnect(websocket)
-
-
-@router.post("/progress")
-async def set_progress(progress: int):
-    "Set the progress of the progress bar"
-
-    await websocket_manager.broadcast(
-        data=Data(data_type="progress", data={"progress": progress})
-    )

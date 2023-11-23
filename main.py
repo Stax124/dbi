@@ -46,7 +46,6 @@ def main():
     uvi_server = Server(config=uvi_config)
 
     uvi_config.setup_event_loop()
-    loop = asyncio.new_event_loop()
 
     try:
         asyncio.run(uvi_server.serve())

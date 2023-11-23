@@ -1,8 +1,5 @@
-import asyncio
 import logging
 import mimetypes
-import os
-from pathlib import Path
 
 from fastapi import Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
@@ -13,10 +10,14 @@ from starlette import status
 from starlette.responses import JSONResponse
 
 from api import websocket_manager
-from api.routes import static, test, ws
+from api.database import create_default_user, create_metadata
+from api.routes import static, test, users, ws
 from api.websockets.notification import Notification
 
 logger = logging.getLogger(__name__)
+
+create_metadata()
+create_default_user()
 
 
 async def log_request(request: Request):
@@ -109,22 +110,13 @@ async def shutdown_event():
 ## HTTP
 app.include_router(static.router)
 app.include_router(test.router, prefix="/api/test")
+app.include_router(users.router, prefix="/api/users")
 
 ## WebSockets
 app.include_router(ws.router, prefix="/api/websockets")
 
-# Mount static files (css, js, images, etc.)
-static_app = FastAPI()
-static_app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-static_app.mount("/", StaticFiles(directory="frontend/dist/assets"), name="assets")
-
-app.mount("/assets", static_app)
+# Static files
+app.mount("/assets", StaticFiles(directory="frontend/dist/assets"), name="assets")
 
 # Allow CORS for specified origins
 app.add_middleware(
