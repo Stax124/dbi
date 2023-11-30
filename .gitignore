@@ -134,3 +134,5 @@ dist
 .pnp.\*
 
 db.sqlite
+
+**.pyc

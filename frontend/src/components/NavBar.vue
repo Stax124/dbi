@@ -86,6 +86,7 @@
 </template>
 
 <script setup lang="ts">
+import { serverUrl } from '@/shared'
 import {
   Home,
   LogIn,
@@ -107,6 +108,12 @@ const websocket = useWebsocket()
 
 const homeIconColor = computed(() => {
   return websocket.readyState === 'OPEN' ? '#00ff00' : '#ff0000'
+})
+
+fetch(`${serverUrl}/api/users/get-user`).then(async (res) => {
+  if (res.status === 200) {
+    global.user = await res.json()
+  }
 })
 </script>
 
