@@ -1,6 +1,8 @@
 import uuid
 from typing import Dict, Optional
 
+from fastapi import Request
+
 from api.models.user import User
 
 
@@ -21,11 +23,15 @@ class SessionManager:
         except KeyError:
             pass
 
-    def get_user(self, token: str) -> Optional[User]:
+    def get_user(self, token: Optional[str]) -> Optional[User]:
+        if token is None:
+            return None
+
         try:
             return self.sessions[token]
         except KeyError:
             return None
 
-    def is_logged_in(self, token: str) -> bool:
+    def is_logged_in(self, req: Request) -> bool:
+        token = req.cookies.get("token")
         return token in self.sessions

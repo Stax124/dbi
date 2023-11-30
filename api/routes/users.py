@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, HTTPException, Request, Response
 from sqlmodel import select
 
 from ..database import create_session
@@ -19,8 +19,10 @@ async def create_user(user: User):
 
 
 @router.get("/get-user")
-async def get_user(token: str):
-    user = session_manager.get_user(token)
+async def get_user(req: Request):
+    token = req.cookies.get("token")
+    logging.info(f"Getting user for token {token}")
+    user = session_manager.get_user(req.cookies.get("token"))
 
     if user is None:
         return HTTPException(status_code=401, detail="User not found")
