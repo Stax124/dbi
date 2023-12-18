@@ -3,7 +3,11 @@
     <NMessageProvider>
       <NNotificationProvider>
         <NavBar />
-        <RouterView />
+        <div class="main-content-wrapper">
+          <div class="main-content">
+            <RouterView />
+          </div>
+        </div>
       </NNotificationProvider>
     </NMessageProvider>
   </NConfigProvider>
@@ -36,5 +40,15 @@ localStorage.setItem('theme', localStorage.getItem('theme') || 'dark')
 <style scoped>
 body {
   color: v-bind('textColor');
+}
+
+.main-content-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.main-content {
+  width: 80vw;
 }
 </style>

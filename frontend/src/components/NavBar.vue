@@ -8,7 +8,7 @@
       </NButton>
 
       <div style="display: flex; flex-direction: row; align-items: center">
-        <NButton class="nav-button" :bordered="false">
+        <NButton class="nav-button" :bordered="false" @click="router.push('/')">
           <template #icon>
             <NIcon>
               <Home />
@@ -24,7 +24,7 @@
           </template>
           Articles
         </NButton>
-        <NButton class="nav-button" ghost :bordered="false">
+        <NButton class="nav-button" ghost :bordered="false" @click="router.push('/new-article')">
           <template #icon>
             <NIcon>
               <Pencil />

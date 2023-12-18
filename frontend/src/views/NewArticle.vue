@@ -1,1 +1,0 @@
-<template>New Article</template>
