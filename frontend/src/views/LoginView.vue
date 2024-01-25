@@ -28,20 +28,24 @@
 </template>
 
 <script setup lang="ts">
-import { serverUrl } from '@/shared';
-import { NButton, NCard, NInput } from 'naive-ui';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { sha256 } from '@/helper'
+import { serverUrl } from '@/shared'
+import { NButton, NCard, NInput } from 'naive-ui'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useGlobal } from '../stores/global'
+
+const global = useGlobal()
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
 const loading = ref(false)
 
-function login() {
+async function login() {
   const url = new URL(`${serverUrl}/api/users/login`)
   url.searchParams.append('email', email.value)
-  url.searchParams.append('password', password.value)
+  url.searchParams.append('password', await sha256(password.value))
   loading.value = true
   fetch(url)
     .then((data) => {
@@ -50,7 +54,14 @@ function login() {
       data.json().then(
         (res) => {
           console.log(res.token)
-          router.push('/')
+          global
+            .getUser()
+            .then(() => {
+              router.push('/')
+            })
+            .catch((err) => {
+              console.log(err)
+            })
         },
         (err) => {
           console.log(err)

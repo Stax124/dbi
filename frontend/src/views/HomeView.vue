@@ -45,7 +45,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus
@@ -67,7 +67,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus
@@ -89,7 +89,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus
@@ -111,7 +111,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus
@@ -133,7 +133,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus
@@ -155,7 +155,7 @@
             src="https://uploads.golmedia.net/uploads/articles/article_media/14748410301702468268gol1.jpg"
             style="width: auto; height: 100%"
           />
-          <p>
+          <p style="text-overflow: ellipsis">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam voluptatum, quibusdam,
             voluptate, quia quod voluptas quos voluptatibus quae doloribus quidem fugiat. Quisquam
             voluptatum, quibusdam, voluptate, quia quod voluptas quos voluptatibus quae doloribus

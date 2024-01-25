@@ -12,6 +12,7 @@
         flexDirection: 'column'
       }"
     >
+      <NInput v-model:value="username" placeholder="Username" style="margin-bottom: 8px" />
       <NInput v-model:value="email" placeholder="Email" style="margin-bottom: 8px" />
       <NInput
         v-model:value="password"
@@ -22,40 +23,47 @@
         :maxlength="256"
         style="margin-bottom: 8px"
       />
-      <NButton type="primary" @click="login" :loading="loading">Login</NButton>
+      <NButton type="primary" @click="register" :loading="loading">Register</NButton>
     </NCard>
   </div>
 </template>
 
 <script setup lang="ts">
-import { serverUrl } from '@/shared';
-import { NButton, NCard, NInput } from 'naive-ui';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { sha256 } from '@/helper'
+import { serverUrl } from '@/shared'
+import { NButton, NCard, NInput } from 'naive-ui'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const email = ref('')
+const username = ref('')
 const password = ref('')
 const router = useRouter()
 const loading = ref(false)
 
-function login() {
-  const url = new URL(`${serverUrl}/api/users/login`)
-  url.searchParams.append('email', email.value)
-  url.searchParams.append('password', password.value)
+async function register() {
   loading.value = true
-  fetch(url)
-    .then((data) => {
+  fetch(`${serverUrl}/api/users/create-user`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: email.value,
+      username: username.value,
+      password: await sha256(password.value)
+    })
+  })
+    .then((res) => {
       loading.value = false
-      console.log('logged in')
-      data.json().then(
-        (res) => {
-          console.log(res.token)
-          router.push('/')
-        },
-        (err) => {
-          console.log(err)
-        }
-      )
+
+      if (res.status !== 200) {
+        console.error(res.statusText)
+        return
+      }
+
+      console.log('account created')
+      router.push('/login')
     })
     .catch((err) => {
       console.log(err)

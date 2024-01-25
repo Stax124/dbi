@@ -39,7 +39,7 @@
           </template>
 
           <div style="display: flex; flex-direction: column" v-if="global.user">
-            <NText>{{ global.user?.username }}</NText>
+            <NText>Username: {{ global.user?.username }}</NText>
 
             <NDivider />
 
@@ -59,7 +59,7 @@
               </template>
               Settings
             </NButton>
-            <NButton class="avatar-dropdown-button">
+            <NButton class="avatar-dropdown-button" @click="logout">
               <template #icon>
                 <NIcon>
                   <LogOut />
@@ -77,6 +77,14 @@
                 </NIcon>
               </template>
               Login
+            </NButton>
+            <NButton class="avatar-dropdown-button" @click="router.push('/register')">
+              <template #icon>
+                <NIcon>
+                  <LogIn />
+                </NIcon>
+              </template>
+              Register
             </NButton>
           </div>
         </NTooltip>
@@ -110,11 +118,15 @@ const homeIconColor = computed(() => {
   return websocket.readyState === 'OPEN' ? '#00ff00' : '#ff0000'
 })
 
-fetch(`${serverUrl}/api/users/get-user`).then(async (res) => {
+async function logout() {
+  const res = await fetch(`${serverUrl}/api/users/logout`, {
+    method: 'POST'
+  })
+
   if (res.status === 200) {
-    global.user = await res.json()
+    global.user = null
   }
-})
+}
 </script>
 
 <style scoped>

@@ -24,8 +24,10 @@ async def get_user(req: Request):
     logging.info(f"Getting user for token {token}")
     user = session_manager.get_user(req.cookies.get("token"))
 
+    print(session_manager.sessions)
+
     if user is None:
-        return HTTPException(status_code=401, detail="User not found")
+        raise HTTPException(status_code=401, detail="User not found")
 
     return {
         "id": user.id,
@@ -44,7 +46,7 @@ async def login(email: str, password: str, response: Response):
     ).first()
 
     if not user:
-        return HTTPException(status_code=401, detail="User not found")
+        raise HTTPException(status_code=401, detail="User not found")
 
     token = session_manager.login(user)
     print("Token", token)
@@ -53,6 +55,13 @@ async def login(email: str, password: str, response: Response):
 
 
 @router.post("/logout")
-def logout(token: str):
+def logout(req: Request, response: Response):
+    token = req.cookies.get("token")
+
+    if token is None:
+        raise HTTPException(status_code=401, detail="Token not found")
+
     session_manager.logout(token)
+    response.delete_cookie(key="token")
+
     return {"message": "User logged out"}

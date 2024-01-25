@@ -83,7 +83,7 @@ async def startup_event():
     logging.getLogger("uvicorn").handlers = []
 
     for logger_ in ("uvicorn.access", "uvicorn.error", "fastapi"):
-        l = logging.getLogger(logger_)
+        log = logging.getLogger(logger_)
         handler = RichHandler(
             rich_tracebacks=True, show_time=False, omit_repeated_times=False
         )
@@ -92,7 +92,7 @@ async def startup_event():
                 fmt="%(asctime)s | %(name)s » %(message)s", datefmt="%H:%M:%S"
             )
         )
-        l.handlers = [handler]
+        log.handlers = [handler]
 
     logger.info("Started WebSocketManager performance monitoring loop")
     logger.info("UI Available at: http://localhost:8080/")

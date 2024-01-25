@@ -27,6 +27,8 @@ class SessionManager:
         if token is None:
             return None
 
+        print(list(self.sessions.keys()), list(self.sessions.keys()).index(token))
+
         try:
             return self.sessions[token]
         except KeyError:
